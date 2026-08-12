@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Resume Builder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>AI Resume Builder</h1>
+
+<input type="text" id="name" placeholder="Full Name"><br><br>
+
+<input type="email" id="email" placeholder="Email"><br><br>
+
+<input type="text" id="phone" placeholder="Phone Number"><br><br>
+
+<input type="file" id="photo" accept="image/*"><br><br>
+
+<label><b>Select Resume Template</b></label><br><br>
+
+<select id="template">
+    <option value="classic">Classic</option>
+    <option value="modern">Modern</option>
+    <option value="professional">Professional</option>
+</select>
+
+<br><br>
+
+<input type="text" id="education" placeholder="Education"><br><br>
+
+<textarea id="skills" placeholder="Skills"></textarea><br><br>
+
+<textarea id="experience" placeholder="Experience"></textarea><br><br>
+
+<button onclick="generateAI()">🤖 Generate AI Summary</button>
+<br><br>
+
+<textarea id="summary" placeholder="AI Professional Summary"></textarea>
+<br><br>
+
+<textarea id="projects"
+placeholder="projects(Example: AI Resume Builder,Weather App)"></textarea><br><br>
+
+<input type="text" id="languages" placeholder="Languages (Example: Hindi, English)"><br><br>
+
+<input type="url" id="github"placeholder="github Profile Link"><br><br>
+
+<input type="url" id="linkedin"placeholder="linkedin Profile Link"><br><br>
+
+<button onclick="generateResume()">Generate Resume</button>
+
+<button onclick="darkMode()">🌙Dark Mode</button>
+
+<button onclick="clearForm()">clearForm</button>
+
+<button onclick="downloadPDF()">Download Resume (pdf)</button>
+
+<div id="resume"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

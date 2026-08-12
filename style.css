@@ -1,0 +1,152 @@
+body{
+    font-family: Arial, sans-serif;
+    background:#f2f2f2;
+}
+
+.container{
+    width:500px;
+    margin:40px auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    box-shadow:0 0 10px gray;
+}
+
+input,textarea{
+    width:90%;
+    padding:10px;
+    margin:5px;
+}
+
+button{
+    background:#007bff;
+    color:white;
+    padding:10px 20px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    margin: 8px;
+}
+
+button:hover{
+    background:#0056b3;
+}
+
+#resume{
+    margin-top:20px;
+    text-align:left;
+    border-top:2px solid #ddd;
+    padding-top:20px;
+
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+h2{
+    color:#007bff;
+}
+@media print {
+    button {
+        display: none;
+    }
+
+    body {
+        background: white;
+    }
+
+    #resume {
+        box-shadow: none;
+        border: none;
+    }
+}
+#resume h2{
+    text-align:center;
+    color:#007bff;
+    margin-bottom:10px;
+}
+
+#resume img{
+    display:block;
+    margin:15px auto;
+    border:3px solid #007bff;
+}
+
+#resume p{
+    font-size:18px;
+    margin:8px 0;
+}
+.classic{
+    background:#ffffff;
+    color:#000;
+    border:2px solid black;
+}
+
+.classic{
+    background:#ffffff;
+    color:#000;
+    border:2px solid black;
+}
+
+.modern{
+    background:#e3f2fd;
+    color:black;
+    border:3px solid #2196f3;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,0.3);
+}
+
+.modern h2{
+    color:#1565c0;
+    text-align:center;
+}
+
+.modern p,
+.modern li,
+.modern strong,
+.modern a{
+    color:black;
+}
+
+.modern img{
+    border:4px solid #2196f3;
+}
+.dark {
+    background:#121212 !important;
+    color:white !important;
+}
+
+.dark h2,
+.dark strong {
+    color:#00e5ff;
+}
+
+.dark a {
+    color:#00e5ff;
+}
+
+.dark p,
+.dark li {
+    color:white;
+}
+/* Dark Mode */
+
+#resume.dark {
+    background: #1e1e1e;
+    color: white;
+    border: 2px solid #555;
+}
+
+#resume.dark h2 {
+    color: #00bfff;
+}
+
+#resume.dark a {
+    color: #00bfff;
+}
+
+#resume.dark hr {
+    border-color: #555;
+}
