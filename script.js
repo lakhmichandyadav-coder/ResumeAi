@@ -1,456 +1,399 @@
-// ==============================
-// INPUT ELEMENTS
-// ==============================
+// ===============================
+// ResumeAi - Complete JavaScript
+// ===============================
 
-const nameInput = document.getElementById("name");
-const jobTitleInput = document.getElementById("jobTitle");
-const emailInput = document.getElementById("email");
-const phoneInput = document.getElementById("phone");
-const photoInput = document.getElementById("photo");
+function generateAI() {
+    const name = document.getElementById("name").value.trim();
+    const education = document.getElementById("education").value.trim();
+    const skills = document.getElementById("skills").value.trim();
+    const experience = document.getElementById("experience").value.trim();
 
-const templateInput = document.getElementById("template");
+    const summaryBox = document.getElementById("summary");
 
-const educationInput = document.getElementById("education");
-const skillsInput = document.getElementById("skills");
-const experienceInput = document.getElementById("experience");
+    if (!name || !education || !skills || !experience) {
+        alert("Please fill Name, Education, Skills and Experience first!");
+        return;
+    }
 
-const summaryInput = document.getElementById("summary");
-const projectsInput = document.getElementById("projects");
-const languagesInput = document.getElementById("languages");
+    let summary = "";
 
-const githubInput = document.getElementById("github");
-const linkedinInput = document.getElementById("linkedin");
+    if (experience.toLowerCase() === "fresher") {
+        summary =
+            "Motivated fresher with a strong willingness to learn and grow professionally. " +
+            "Possesses good knowledge and skills relevant to the chosen career field and is eager " +
+            "to contribute positively to an organization.";
+    } else {
+        summary =
+            "Experienced professional with strong practical knowledge, problem-solving abilities " +
+            "and a commitment to delivering quality work. Ready to contribute skills and experience " +
+            "to organizational growth.";
+    }
 
-
-// ==============================
-// PREVIEW ELEMENTS
-// ==============================
-
-const resume = document.getElementById("resume");
-
-const previewName =
-    document.getElementById("previewName");
-
-const previewJobTitle =
-    document.getElementById("previewJobTitle");
-
-const previewEmail =
-    document.getElementById("previewEmail");
-
-const previewPhone =
-    document.getElementById("previewPhone");
-
-const previewPhoto =
-    document.getElementById("previewPhoto");
-
-const previewSummary =
-    document.getElementById("previewSummary");
-
-const previewEducation =
-    document.getElementById("previewEducation");
-
-const previewSkills =
-    document.getElementById("previewSkills");
-
-const previewExperience =
-    document.getElementById("previewExperience");
-
-const previewProjects =
-    document.getElementById("previewProjects");
-
-const previewLanguages =
-    document.getElementById("previewLanguages");
-
-const previewGithub =
-    document.getElementById("previewGithub");
-
-const previewLinkedin =
-    document.getElementById("previewLinkedin");
-
-const previewDate =
-    document.getElementById("previewDate");
+    summaryBox.value = summary;
+}
 
 
-// ==============================
-// LIVE PREVIEW
-// ==============================
+// ===============================
+// Generate Resume
+// ===============================
 
-function updatePreview() {
+function generateResume() {
 
-    previewName.textContent =
-        nameInput.value || "Your Name";
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const education = document.getElementById("education").value.trim();
+    const skills = document.getElementById("skills").value.trim();
+    const experience = document.getElementById("experience").value.trim();
+    const summary = document.getElementById("summary").value.trim();
+    const projects = document.getElementById("projects").value.trim();
+    const languages = document.getElementById("languages").value.trim();
+    const github = document.getElementById("github").value.trim();
+    const linkedin = document.getElementById("linkedin").value.trim();
 
-    previewJobTitle.textContent =
-        jobTitleInput.value || "Job Title";
+    const template = document.getElementById("template").value;
 
-    previewEmail.textContent =
-        emailInput.value || "Email";
+    const photoInput = document.getElementById("photo");
+    const resume = document.getElementById("resume");
 
-    previewPhone.textContent =
-        phoneInput.value || "Phone";
+    // ===============================
+    // Check required fields
+    // ===============================
 
-    previewSummary.textContent =
-        summaryInput.value ||
-        "Your professional summary will appear here.";
-
-    previewEducation.textContent =
-        educationInput.value ||
-        "Your education will appear here.";
-
-    previewExperience.textContent =
-        experienceInput.value ||
-        "Your experience will appear here.";
-
-    previewLanguages.textContent =
-        languagesInput.value ||
-        "Your languages will appear here.";
+    if (
+        name === "" ||
+        email === "" ||
+        phone === "" ||
+        education === "" ||
+        skills === "" ||
+        experience === "" ||
+        projects === "" ||
+        languages === ""
+    ) {
+        alert("Please fill all fields!");
+        return;
+    }
 
 
-    // ==========================
-    // SKILLS
-    // ==========================
+    // ===============================
+    // LIVE DATE
+    // ===============================
 
-    previewSkills.innerHTML = "";
+    const today = new Date().toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+    });
 
-    const skills = skillsInput.value
+
+    // ===============================
+    // Skills
+    // ===============================
+
+    const skillsList = skills
         .split(",")
         .map(skill => skill.trim())
         .filter(skill => skill !== "");
 
-    skills.forEach(skill => {
+    let skillsHTML = "";
 
-        const li = document.createElement("li");
-
-        li.textContent = skill;
-
-        previewSkills.appendChild(li);
-
+    skillsList.forEach(skill => {
+        skillsHTML += `<li>${skill}</li>`;
     });
 
 
-    // ==========================
-    // PROJECTS
-    // ==========================
+    // ===============================
+    // Projects
+    // ===============================
 
-    previewProjects.innerHTML = "";
-
-    const projects = projectsInput.value
+    const projectList = projects
         .split(",")
         .map(project => project.trim())
         .filter(project => project !== "");
 
-    projects.forEach(project => {
+    let projectsHTML = "";
 
-        const li = document.createElement("li");
-
-        li.textContent = project;
-
-        previewProjects.appendChild(li);
-
+    projectList.forEach(project => {
+        projectsHTML += `<li>${project}</li>`;
     });
 
 
-    // ==========================
-    // GITHUB
-    // ==========================
+    // ===============================
+    // Photo
+    // ===============================
 
-    if (githubInput.value.trim() !== "") {
+    let photoHTML = "";
 
-        previewGithub.href =
-            githubInput.value.trim();
+    if (photoInput && photoInput.files.length > 0) {
 
-        previewGithub.style.display =
-            "inline";
+        const photoURL = URL.createObjectURL(photoInput.files[0]);
 
-    } else {
-
-        previewGithub.style.display =
-            "none";
+        photoHTML = `
+            <img 
+                src="${photoURL}" 
+                class="resume-photo"
+                alt="Profile Photo"
+            >
+        `;
     }
 
 
-    // ==========================
-    // LINKEDIN
-    // ==========================
+    // ===============================
+    // Profile Links
+    // ===============================
 
-    if (linkedinInput.value.trim() !== "") {
+    let profilesHTML = "";
 
-        previewLinkedin.href =
-            linkedinInput.value.trim();
+    if (github) {
+        profilesHTML += `
+            <p>
+                <b>GitHub:</b>
+                <a href="${github}" target="_blank">${github}</a>
+            </p>
+        `;
+    }
 
-        previewLinkedin.style.display =
-            "inline";
-
-    } else {
-
-        previewLinkedin.style.display =
-            "none";
+    if (linkedin) {
+        profilesHTML += `
+            <p>
+                <b>LinkedIn:</b>
+                <a href="${linkedin}" target="_blank">${linkedin}</a>
+            </p>
+        `;
     }
 
 
-    // ==========================
-    // DATE
-    // ==========================
+    // ===============================
+    // Template Design
+    // ===============================
 
-    const today =
-        new Date().toLocaleDateString();
+    let templateClass = "classic-template";
 
-    previewDate.textContent =
-        today;
-
-
-    // ==========================
-    // TEMPLATE
-    // ==========================
-
-    resume.classList.remove(
-        "modern",
-        "professional",
-        "creative",
-        "minimal"
-    );
-
-    if (templateInput.value !== "classic") {
-
-        resume.classList.add(
-            templateInput.value
-        );
-
+    if (template === "modern") {
+        templateClass = "modern-template";
     }
-}
 
-
-// ==============================
-// LIVE INPUT LISTENERS
-// ==============================
-
-const allInputs =
-    document.querySelectorAll(
-        "input, textarea, select"
-    );
-
-allInputs.forEach(input => {
-
-    input.addEventListener(
-        "input",
-        updatePreview
-    );
-
-    input.addEventListener(
-        "change",
-        updatePreview
-    );
-
-});
-
-
-// ==============================
-// PHOTO PREVIEW
-// ==============================
-
-photoInput.addEventListener(
-    "change",
-    function () {
-
-        const file =
-            photoInput.files[0];
-
-        if (!file) {
-
-            previewPhoto.style.display =
-                "none";
-
-            return;
-        }
-
-        const reader =
-            new FileReader();
-
-        reader.onload =
-            function (event) {
-
-                previewPhoto.src =
-                    event.target.result;
-
-                previewPhoto.style.display =
-                    "block";
-            };
-
-        reader.readAsDataURL(file);
-    }
-);
-
-
-// ==============================
-// AI SUMMARY
-// ==============================
-
-function generateAI() {
-
-    const name =
-        nameInput.value.trim();
-
-    const job =
-        jobTitleInput.value.trim();
-
-    const skills =
-        skillsInput.value.trim();
-
-    const experience =
-        experienceInput.value.trim();
-
-
-    if (
-        name === "" ||
-        job === "" ||
-        skills === ""
-    ) {
-
-        alert(
-            "Please fill Name, Job Title and Skills first."
-        );
-
-        return;
+    if (template === "professional") {
+        templateClass = "professional-template";
     }
 
 
-    let summary = "";
+    // ===============================
+    // Resume HTML
+    // ===============================
+
+    resume.innerHTML = `
+
+        <div class="resume-card ${templateClass}">
+
+            <div class="resume-header">
+
+                ${photoHTML}
+
+                <div class="resume-name">
+
+                    <h1>${name}</h1>
+
+                    <p>
+                        ${email} |
+                        ${phone}
+                    </p>
+
+                </div>
+
+            </div>
 
 
-    if (
-        experience
-            .toLowerCase()
-            .includes("fresher")
-    ) {
+            <section>
 
-        summary =
-            `Motivated fresher seeking an opportunity as a ${job}. ` +
-            `Strong interest in developing professional skills and applying knowledge of ${skills}. ` +
-            `Eager to learn, grow and contribute to the organization.`;
+                <h2>Career Objective</h2>
 
-    } else {
+                <p>
+                    To obtain a challenging position where I can apply my skills,
+                    learn continuously, and contribute to the organization's success.
+                </p>
 
-        summary =
-            `Experienced ${job} with strong knowledge of ${skills}. ` +
-            `Demonstrated ability to learn quickly, solve problems and contribute effectively to professional projects.`;
-
-    }
+            </section>
 
 
-    summaryInput.value =
-        summary;
+            <section>
 
-    updatePreview();
-}
+                <h2>Professional Summary</h2>
 
+                <p>
+                    ${
+                        summary ||
+                        "Your professional summary will appear here."
+                    }
+                </p>
 
-// ==============================
-// GENERATE RESUME
-// ==============================
-
-function generateResume() {
-
-    if (
-        nameInput.value.trim() === "" ||
-        emailInput.value.trim() === "" ||
-        phoneInput.value.trim() === "" ||
-        educationInput.value.trim() === "" ||
-        skillsInput.value.trim() === "" ||
-        experienceInput.value.trim() === "" ||
-        projectsInput.value.trim() === "" ||
-        languagesInput.value.trim() === ""
-    ) {
-
-        alert(
-            "Please fill all required fields!"
-        );
-
-        return;
-    }
+            </section>
 
 
-    updatePreview();
+            <section>
+
+                <h2>Education</h2>
+
+                <p>
+                    ${education}
+                </p>
+
+            </section>
 
 
-    alert(
-        "Resume generated successfully!"
-    );
+            <section>
+
+                <h2>Skills</h2>
+
+                <ul>
+                    ${skillsHTML}
+                </ul>
+
+            </section>
 
 
+            <section>
+
+                <h2>Experience</h2>
+
+                <p>
+                    ${experience}
+                </p>
+
+            </section>
+
+
+            <section>
+
+                <h2>Projects</h2>
+
+                <ul>
+                    ${projectsHTML}
+                </ul>
+
+            </section>
+
+
+            <section>
+
+                <h2>Languages</h2>
+
+                <p>
+                    ${languages}
+                </p>
+
+            </section>
+
+
+            <section>
+
+                <h2>Profiles</h2>
+
+                ${profilesHTML || "<p>No profile links added.</p>"}
+
+            </section>
+
+
+            <section>
+
+                <h2>Date</h2>
+
+                <p>
+                    ${today}
+                </p>
+
+            </section>
+
+
+        </div>
+    `;
+
+    // Scroll to generated resume
     resume.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+// ===============================
+// Dark Mode
+// ===============================
+
+function darkMode() {
+
+    document.body.classList.toggle("dark-mode");
+
+    const button = document.querySelector(
+        'button[onclick="darkMode()"]'
+    );
+
+    if (document.body.classList.contains("dark-mode")) {
+        button.innerHTML = "☀️ Light Mode";
+    } else {
+        button.innerHTML = "🌙 Dark Mode";
+    }
+}
+
+
+// ===============================
+// Clear Form
+// ===============================
+
+function clearForm() {
+
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("education").value = "";
+    document.getElementById("skills").value = "";
+    document.getElementById("experience").value = "";
+    document.getElementById("summary").value = "";
+    document.getElementById("projects").value = "";
+    document.getElementById("languages").value = "";
+    document.getElementById("github").value = "";
+    document.getElementById("linkedin").value = "";
+
+    document.getElementById("template").value = "classic";
+
+    const photo = document.getElementById("photo");
+
+    if (photo) {
+        photo.value = "";
+    }
+
+    document.getElementById("resume").innerHTML = "";
+
+    window.scrollTo({
+        top: 0,
         behavior: "smooth"
     });
 }
 
 
-// ==============================
-// DARK MODE
-// ==============================
-
-function darkMode() {
-
-    document.body.classList.toggle(
-        "dark"
-    );
-}
-
-
-// ==============================
-// CLEAR FORM
-// ==============================
-
-function clearForm() {
-
-    nameInput.value = "";
-
-    jobTitleInput.value = "";
-
-    emailInput.value = "";
-
-    phoneInput.value = "";
-
-    photoInput.value = "";
-
-    templateInput.value =
-        "classic";
-
-    educationInput.value = "";
-
-    skillsInput.value = "";
-
-    experienceInput.value = "";
-
-    summaryInput.value = "";
-
-    projectsInput.value = "";
-
-    languagesInput.value = "";
-
-    githubInput.value = "";
-
-    linkedinInput.value = "";
-
-    previewPhoto.style.display =
-        "none";
-
-    updatePreview();
-}
-
-
-// ==============================
-// DOWNLOAD PDF
-// ==============================
+// ===============================
+// Download Resume PDF
+// ===============================
 
 function downloadPDF() {
 
-    updatePreview();
+    const resume = document.getElementById("resume");
+
+    if (resume.innerHTML.trim() === "") {
+        alert("First generate your resume!");
+        return;
+    }
 
     window.print();
 }
 
 
-// ==============================
-// INITIAL PREVIEW
-// ==============================
+// ===============================
+// Page Load
+// ===============================
 
-updatePreview();
+document.addEventListener("DOMContentLoaded", function () {
+
+    console.log("ResumeAi loaded successfully.");
+
+});
