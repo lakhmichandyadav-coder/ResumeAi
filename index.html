@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>AI Resume Builder</title>
+
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,56 +13,183 @@
 
 <div class="container">
 
-<h1>AI Resume Builder</h1>
+    <h1>AI Resume Builder</h1>
 
-<input type="text" id="name" placeholder="Full Name"><br><br>
+    <!-- Personal Details -->
 
-<input type="email" id="email" placeholder="Email"><br><br>
+    <input
+        type="text"
+        id="name"
+        placeholder="Full Name"
+    >
+    <br><br>
 
-<input type="text" id="phone" placeholder="Phone Number"><br><br>
+    <input
+        type="email"
+        id="email"
+        placeholder="Email"
+    >
+    <br><br>
 
-<input type="file" id="photo" accept="image/*"><br><br>
+    <input
+        type="text"
+        id="phone"
+        placeholder="Phone Number"
+    >
+    <br><br>
 
-<label><b>Select Resume Template</b></label><br><br>
+    <!-- Photo -->
 
-<select id="template">
-    <option value="classic">Classic</option>
-    <option value="modern">Modern</option>
-    <option value="professional">Professional</option>
-</select>
+    <input
+        type="file"
+        id="photo"
+        accept="image/*"
+    >
+    <br><br>
 
-<br><br>
+    <!-- Resume Template -->
 
-<input type="text" id="education" placeholder="Education"><br><br>
+    <label>
+        <b>Select Resume Template</b>
+    </label>
+    <br><br>
 
-<textarea id="skills" placeholder="Skills"></textarea><br><br>
+    <select id="template">
 
-<textarea id="experience" placeholder="Experience"></textarea><br><br>
+        <option value="classic">
+            Classic
+        </option>
 
-<button onclick="generateAI()">🤖 Generate AI Summary</button>
-<br><br>
+        <option value="modern">
+            Modern
+        </option>
 
-<textarea id="summary" placeholder="AI Professional Summary"></textarea>
-<br><br>
+        <option value="professional">
+            Professional
+        </option>
 
-<textarea id="projects"
-placeholder="projects(Example: AI Resume Builder,Weather App)"></textarea><br><br>
+    </select>
 
-<input type="text" id="languages" placeholder="Languages (Example: Hindi, English)"><br><br>
+    <br><br>
 
-<input type="url" id="github"placeholder="github Profile Link"><br><br>
+    <!-- Education -->
 
-<input type="url" id="linkedin"placeholder="linkedin Profile Link"><br><br>
+    <input
+        type="text"
+        id="education"
+        placeholder="Education"
+    >
+    <br><br>
 
-<button onclick="generateResume()">Generate Resume</button>
+    <!-- Skills -->
 
-<button onclick="darkMode()">🌙Dark Mode</button>
+    <textarea
+        id="skills"
+        placeholder="Skills (Example: HTML, CSS, JavaScript)"
+    ></textarea>
 
-<button onclick="clearForm()">clearForm</button>
+    <br><br>
 
-<button onclick="downloadPDF()">Download Resume (pdf)</button>
+    <!-- Experience -->
 
-<div id="resume"></div>
+    <textarea
+        id="experience"
+        placeholder="Experience (Example: Fresher)"
+    ></textarea>
+
+    <br><br>
+
+    <!-- AI Summary -->
+
+    <button onclick="generateAI()">
+        🤖 Generate AI Summary
+    </button>
+
+    <br><br>
+
+    <textarea
+        id="summary"
+        placeholder="AI Professional Summary"
+    ></textarea>
+
+    <br><br>
+
+    <!-- Projects -->
+
+    <textarea
+        id="projects"
+        placeholder="Projects (Example: AI Resume Builder, Weather App)"
+    ></textarea>
+
+    <br><br>
+
+    <!-- Languages -->
+
+    <input
+        type="text"
+        id="languages"
+        placeholder="Languages (Example: Hindi, English)"
+    >
+
+    <br><br>
+
+    <!-- GitHub -->
+
+    <input
+        type="url"
+        id="github"
+        placeholder="GitHub Profile Link"
+    >
+
+    <br><br>
+
+    <!-- LinkedIn -->
+
+    <input
+        type="url"
+        id="linkedin"
+        placeholder="LinkedIn Profile Link"
+    >
+
+    <br><br>
+
+    <!-- Main Buttons -->
+
+    <button onclick="generateResume()">
+        Generate Resume
+    </button>
+
+    <button onclick="darkMode()">
+        🌙 Dark Mode
+    </button>
+
+    <button onclick="clearForm()">
+        Clear Form
+    </button>
+
+    <button onclick="downloadPDF()">
+        Download Resume (PDF)
+    </button>
+
+    <br><br>
+
+    <!-- Save / Load / Delete -->
+
+    <button onclick="saveResume()">
+        💾 Save Resume
+    </button>
+
+    <button onclick="loadSavedResume()">
+        📂 Load Saved Resume
+    </button>
+
+    <button onclick="deleteSavedResume()">
+        🗑️ Delete Saved Resume
+    </button>
+
+    <!-- Generated Resume -->
+
+    <div id="resume"></div>
 
 </div>
 
