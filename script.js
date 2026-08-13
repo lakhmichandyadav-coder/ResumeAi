@@ -8,11 +8,15 @@
 // ==========================================
 
 function getLiveDate() {
-    return new Date().toLocaleDateString("en-IN", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric"
-    });
+
+    return new Date().toLocaleDateString(
+        "en-IN",
+        {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+        }
+    );
 }
 
 
@@ -23,62 +27,114 @@ function getLiveDate() {
 function getFormData() {
 
     return {
-        name: document.getElementById("name")?.value.trim() || "",
-        email: document.getElementById("email")?.value.trim() || "",
-        phone: document.getElementById("phone")?.value.trim() || "",
 
-        // JOB TITLE
-        jobTitle: document.getElementById("jobTitle")?.value.trim() || "",
+        name:
+            document.getElementById("name")
+            ?.value.trim() || "",
 
-        education: document.getElementById("education")?.value.trim() || "",
-        skills: document.getElementById("skills")?.value.trim() || "",
-        experience: document.getElementById("experience")?.value.trim() || "",
-        summary: document.getElementById("summary")?.value.trim() || "",
-        projects: document.getElementById("projects")?.value.trim() || "",
-        languages: document.getElementById("languages")?.value.trim() || "",
-        github: document.getElementById("github")?.value.trim() || "",
-        linkedin: document.getElementById("linkedin")?.value.trim() || "",
+        email:
+            document.getElementById("email")
+            ?.value.trim() || "",
+
+        phone:
+            document.getElementById("phone")
+            ?.value.trim() || "",
+
+        jobTitle:
+            document.getElementById("jobTitle")
+            ?.value.trim() || "",
+
+        education:
+            document.getElementById("education")
+            ?.value.trim() || "",
+
+        skills:
+            document.getElementById("skills")
+            ?.value.trim() || "",
+
+        experience:
+            document.getElementById("experience")
+            ?.value.trim() || "",
+
+        summary:
+            document.getElementById("summary")
+            ?.value.trim() || "",
+
+        projects:
+            document.getElementById("projects")
+            ?.value.trim() || "",
+
+        languages:
+            document.getElementById("languages")
+            ?.value.trim() || "",
+
+        github:
+            document.getElementById("github")
+            ?.value.trim() || "",
+
+        linkedin:
+            document.getElementById("linkedin")
+            ?.value.trim() || "",
 
         template:
-            document.getElementById("template")?.value || "classic"
+            document.getElementById("template")
+            ?.value || "classic"
     };
 }
 
 
 // ==========================================
-// SKILLS HTML
+// SKILLS
 // ==========================================
 
 function makeSkillsHTML(skills) {
 
     if (!skills) {
-        return "<li>Your skills will appear here.</li>";
+
+        return `
+            <li>
+                Your skills will appear here.
+            </li>
+        `;
     }
+
 
     return skills
         .split(",")
         .map(skill => skill.trim())
         .filter(skill => skill !== "")
-        .map(skill => `<li>${skill}</li>`)
+        .map(
+            skill =>
+                `<li>${skill}</li>`
+        )
         .join("");
 }
 
 
 // ==========================================
-// PROJECTS HTML
+// PROJECTS
 // ==========================================
 
 function makeProjectsHTML(projects) {
 
     if (!projects) {
-        return "<li>Your projects will appear here.</li>";
+
+        return `
+            <li>
+                Your projects will appear here.
+            </li>
+        `;
     }
+
 
     return projects
         .split(",")
         .map(project => project.trim())
         .filter(project => project !== "")
-        .map(project => `<li>${project}</li>`)
+        .map(
+            project =>
+                `<li>${project}</li>`
+        )
         .join("");
 }
 
@@ -87,37 +143,52 @@ function makeProjectsHTML(projects) {
 // PROFILE LINKS
 // ==========================================
 
-function makeProfilesHTML(github, linkedin) {
+function makeProfilesHTML(
+    github,
+    linkedin
+) {
 
     let html = "";
+
 
     if (github) {
 
         html += `
             <p>
                 <strong>GitHub:</strong>
-                <a href="${github}" target="_blank">
+                <a
+                    href="${github}"
+                    target="_blank"
+                >
                     ${github}
                 </a>
             </p>
         `;
     }
 
+
     if (linkedin) {
 
         html += `
             <p>
                 <strong>LinkedIn:</strong>
-                <a href="${linkedin}" target="_blank">
+                <a
+                    href="${linkedin}"
+                    target="_blank"
+                >
                     ${linkedin}
                 </a>
             </p>
         `;
     }
 
+
     if (!html) {
-        html = "<p>Your profile links will appear here.</p>";
+
+        html =
+            "<p>Your profile links will appear here.</p>";
     }
+
 
     return html;
 }
@@ -132,6 +203,7 @@ function getPhotoHTML() {
     const photoInput =
         document.getElementById("photo");
 
+
     if (
         photoInput &&
         photoInput.files &&
@@ -139,7 +211,10 @@ function getPhotoHTML() {
     ) {
 
         const imageURL =
-            URL.createObjectURL(photoInput.files[0]);
+            URL.createObjectURL(
+                photoInput.files[0]
+            );
+
 
         return `
             <img
@@ -149,6 +224,7 @@ function getPhotoHTML() {
             >
         `;
     }
+
 
     return "";
 }
@@ -161,20 +237,28 @@ function getPhotoHTML() {
 function getTemplateClass(template) {
 
     if (template === "modern") {
+
         return "modern-template";
     }
 
+
     if (template === "professional") {
+
         return "professional-template";
     }
 
+
     if (template === "creative") {
+
         return "creative-template";
     }
 
+
     if (template === "minimal") {
+
         return "minimal-template";
     }
+
 
     return "classic-template";
 }
@@ -186,10 +270,13 @@ function getTemplateClass(template) {
 
 function generateAI() {
 
-    const data = getFormData();
+    const data =
+        getFormData();
+
 
     const summaryBox =
         document.getElementById("summary");
+
 
     if (
         !data.name ||
@@ -205,10 +292,13 @@ function generateAI() {
         return;
     }
 
+
     let summary = "";
 
+
     if (
-        data.experience.toLowerCase() === "fresher"
+        data.experience
+            .toLowerCase() === "fresher"
     ) {
 
         summary =
@@ -225,7 +315,10 @@ function generateAI() {
             "commitment to delivering quality work.";
     }
 
-    summaryBox.value = summary;
+
+    summaryBox.value =
+        summary;
+
 
     updateLivePreview();
 }
@@ -240,21 +333,35 @@ function updateLivePreview() {
     const resume =
         document.getElementById("resume");
 
+
     if (!resume) return;
 
-    const data = getFormData();
+
+    const data =
+        getFormData();
+
 
     const date =
         getLiveDate();
 
+
     const templateClass =
-        getTemplateClass(data.template);
+        getTemplateClass(
+            data.template
+        );
+
 
     const skillsHTML =
-        makeSkillsHTML(data.skills);
+        makeSkillsHTML(
+            data.skills
+        );
+
 
     const projectsHTML =
-        makeProjectsHTML(data.projects);
+        makeProjectsHTML(
+            data.projects
+        );
+
 
     const profilesHTML =
         makeProfilesHTML(
@@ -262,18 +369,19 @@ function updateLivePreview() {
             data.linkedin
         );
 
+
     const photoHTML =
         getPhotoHTML();
 
 
     resume.innerHTML = `
 
-        <div class="resume-card ${templateClass}">
-
-
-            <!-- HEADER -->
+        <div
+            class="resume-card ${templateClass}"
+        >
 
             <div class="resume-header">
+
 
                 <div class="photo-area">
 
@@ -285,27 +393,39 @@ function updateLivePreview() {
                 <div class="resume-name">
 
                     <h1>
-                        ${data.name || "Your Name"}
+                        ${
+                            data.name ||
+                            "Your Name"
+                        }
                     </h1>
 
 
                     <h3>
-                        ${data.jobTitle || "Job Title"}
+                        ${
+                            data.jobTitle ||
+                            "Job Title"
+                        }
                     </h3>
 
 
                     <p>
-                        ${data.email || "your@email.com"}
+                        ${
+                            data.email ||
+                            "your@email.com"
+                        }
+
                         |
-                        ${data.phone || "Phone Number"}
+
+                        ${
+                            data.phone ||
+                            "Phone Number"
+                        }
                     </p>
 
                 </div>
 
             </div>
 
-
-            <!-- CAREER OBJECTIVE -->
 
             <section>
 
@@ -314,15 +434,15 @@ function updateLivePreview() {
                 </h2>
 
                 <p>
-                    To obtain a challenging position where I can
-                    apply my skills, learn continuously, and
-                    contribute to the organization's success.
+                    To obtain a challenging position
+                    where I can apply my skills,
+                    learn continuously, and
+                    contribute to the organization's
+                    success.
                 </p>
 
             </section>
 
-
-            <!-- SUMMARY -->
 
             <section>
 
@@ -340,8 +460,6 @@ function updateLivePreview() {
             </section>
 
 
-            <!-- EDUCATION -->
-
             <section>
 
                 <h2>
@@ -358,8 +476,6 @@ function updateLivePreview() {
             </section>
 
 
-            <!-- SKILLS -->
-
             <section>
 
                 <h2>
@@ -372,8 +488,6 @@ function updateLivePreview() {
 
             </section>
 
-
-            <!-- EXPERIENCE -->
 
             <section>
 
@@ -391,8 +505,6 @@ function updateLivePreview() {
             </section>
 
 
-            <!-- PROJECTS -->
-
             <section>
 
                 <h2>
@@ -405,8 +517,6 @@ function updateLivePreview() {
 
             </section>
 
-
-            <!-- LANGUAGES -->
 
             <section>
 
@@ -424,8 +534,6 @@ function updateLivePreview() {
             </section>
 
 
-            <!-- PROFILES -->
-
             <section>
 
                 <h2>
@@ -436,8 +544,6 @@ function updateLivePreview() {
 
             </section>
 
-
-            <!-- DATE -->
 
             <section>
 
@@ -453,7 +559,6 @@ function updateLivePreview() {
 
 
         </div>
-
     `;
 }
 
@@ -542,18 +647,12 @@ function darkMode() {
 
 function clearForm() {
 
-    // IMPORTANT:
-    // jobTitle भी इसमें included है.
-
     const ids = [
 
         "name",
         "email",
         "phone",
-
-        // JOB TITLE
         "jobTitle",
-
         "education",
         "skills",
         "experience",
@@ -566,23 +665,27 @@ function clearForm() {
     ];
 
 
-    ids.forEach(function(id) {
+    ids.forEach(
+        function(id) {
 
-        const element =
-            document.getElementById(id);
+            const element =
+                document.getElementById(id);
 
-        if (element) {
 
-            element.value = "";
+            if (element) {
+
+                element.value = "";
+            }
+
         }
+    );
 
-    });
-
-
-    // Reset template
 
     const template =
-        document.getElementById("template");
+        document.getElementById(
+            "template"
+        );
+
 
     if (template) {
 
@@ -591,19 +694,17 @@ function clearForm() {
     }
 
 
-    // Clear photo
-
     const photo =
-        document.getElementById("photo");
+        document.getElementById(
+            "photo"
+        );
+
 
     if (photo) {
 
         photo.value = "";
     }
 
-
-    // Refresh preview
-    // Date remains visible
 
     updateLivePreview();
 
@@ -625,7 +726,9 @@ function clearForm() {
 function downloadPDF() {
 
     const resume =
-        document.getElementById("resume");
+        document.getElementById(
+            "resume"
+        );
 
 
     if (
@@ -646,12 +749,26 @@ function downloadPDF() {
 
 
 // ==========================================
+// PREMIUM
+// ==========================================
+
+function goPremium() {
+
+    alert(
+        "💎 ResumeAi Premium is coming soon!\n\n" +
+        "Payment system will be added after the Premium design is finalized."
+    );
+}
+
+
+// ==========================================
 // AUTOMATIC LIVE PREVIEW
 // ==========================================
 
 document.addEventListener(
     "DOMContentLoaded",
     function() {
+
 
         updateLivePreview();
 
@@ -661,10 +778,7 @@ document.addEventListener(
             "name",
             "email",
             "phone",
-
-            // JOB TITLE
             "jobTitle",
-
             "education",
             "skills",
             "experience",
@@ -678,32 +792,35 @@ document.addEventListener(
         ];
 
 
-        inputIds.forEach(function(id) {
+        inputIds.forEach(
+            function(id) {
 
-            const element =
-                document.getElementById(id);
-
-            if (!element) return;
-
-
-            element.addEventListener(
-                "input",
-                updateLivePreview
-            );
+                const element =
+                    document.getElementById(id);
 
 
-            element.addEventListener(
-                "change",
-                updateLivePreview
-            );
-
-        });
+                if (!element) return;
 
 
-        // Photo live preview
+                element.addEventListener(
+                    "input",
+                    updateLivePreview
+                );
+
+
+                element.addEventListener(
+                    "change",
+                    updateLivePreview
+                );
+
+            }
+        );
+
 
         const photo =
-            document.getElementById("photo");
+            document.getElementById(
+                "photo"
+            );
 
 
         if (photo) {
