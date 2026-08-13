@@ -1,573 +1,378 @@
-// ===============================
-// GENERATE RESUME
-// ===============================
+// ==============================
+// ELEMENTS
+// ==============================
 
-function generateResume() {
+const nameInput = document.getElementById("name");
+const jobTitleInput = document.getElementById("jobTitle");
+const emailInput = document.getElementById("email");
+const phoneInput = document.getElementById("phone");
+const photoInput = document.getElementById("photo");
 
-    let name = document.getElementById("name").value.trim();
-    let email = document.getElementById("email").value.trim();
-    let phone = document.getElementById("phone").value.trim();
-    let education = document.getElementById("education").value.trim();
-    let skills = document.getElementById("skills").value.trim();
-    let experience = document.getElementById("experience").value.trim();
-    let projects = document.getElementById("projects").value.trim();
-    let languages = document.getElementById("languages").value.trim();
-    let github = document.getElementById("github").value.trim();
-    let linkedin = document.getElementById("linkedin").value.trim();
+const templateInput = document.getElementById("template");
 
-    let summary = document.getElementById("summary").value.trim();
+const educationInput = document.getElementById("education");
+const skillsInput = document.getElementById("skills");
+const experienceInput = document.getElementById("experience");
 
-    let today = new Date().toLocaleDateString();
+const summaryInput = document.getElementById("summary");
+const projectsInput = document.getElementById("projects");
+const languagesInput = document.getElementById("languages");
 
-    let photo = document.getElementById("photo").files[0];
-
-    let template = document.getElementById("template").value;
+const githubInput = document.getElementById("github");
+const linkedinInput = document.getElementById("linkedin");
 
 
-    // ===============================
-    // CHECK REQUIRED FIELDS
-    // ===============================
+// ==============================
+// LIVE PREVIEW ELEMENTS
+// ==============================
 
-    if (
-        name === "" ||
-        email === "" ||
-        phone === "" ||
-        education === "" ||
-        skills === "" ||
-        experience === "" ||
-        projects === "" ||
-        languages === "" ||
-        github === "" ||
-        linkedin === ""
-    ) {
+const resume = document.getElementById("resume");
 
-        alert("Please fill all fields! ❌");
-        return;
-    }
+const previewName = document.getElementById("previewName");
+const previewJobTitle = document.getElementById("previewJobTitle");
 
+const previewEmail = document.getElementById("previewEmail");
+const previewPhone = document.getElementById("previewPhone");
 
-    // ===============================
-    // DEFAULT SUMMARY
-    // ===============================
+const previewPhoto = document.getElementById("previewPhoto");
 
-    if (summary === "") {
+const previewSummary = document.getElementById("previewSummary");
+const previewEducation = document.getElementById("previewEducation");
+const previewExperience = document.getElementById("previewLanguages");
 
-        summary =
-            "Motivated professional with skills in " +
-            skills +
-            ". Ready to learn, grow and contribute to projects.";
-    }
+const previewSkills = document.getElementById("previewSkills");
+const previewProjects = document.getElementById("previewProjects");
+
+const previewLanguages = document.getElementById("previewLanguages");
+
+const previewGithub = document.getElementById("previewGithub");
+const previewLinkedin = document.getElementById("previewLinkedin");
 
 
-    // ===============================
-    // SELECT TEMPLATE
-    // ===============================
+// ==============================
+// UPDATE LIVE PREVIEW
+// ==============================
 
-    let resume = document.getElementById("resume");
+function updatePreview() {
 
-    resume.className = "";
+    previewName.textContent =
+        nameInput.value || "Your Name";
 
-    if (template === "classic") {
+    previewJobTitle.textContent =
+        jobTitleInput.value || "Job Title";
 
-        resume.classList.add("classic");
+    previewEmail.textContent =
+        emailInput.value || "Email";
 
-    }
+    previewPhone.textContent =
+        phoneInput.value || "Phone";
 
-    else if (template === "modern") {
+    previewSummary.textContent =
+        summaryInput.value ||
+        "Your professional summary will appear here.";
 
-        resume.classList.add("modern");
+    previewEducation.textContent =
+        educationInput.value ||
+        "Your education will appear here.";
 
-    }
+    previewExperience.textContent =
+        experienceInput.value ||
+        "Your experience will appear here.";
 
-    else if (template === "professional") {
-
-        resume.classList.add("professional");
-
-    }
-
-
-    // ===============================
-    // SKILLS LIST
-    // ===============================
-
-    let skillsList = skills.split(",");
+    previewLanguages.textContent =
+        languagesInput.value ||
+        "Your languages will appear here.";
 
 
-    let skillsHTML = "";
+    // Skills
 
-    skillsList.forEach(function(skill) {
+    previewSkills.innerHTML = "";
 
-        if (skill.trim() !== "") {
+    const skills = skillsInput.value
+        .split(",")
+        .map(skill => skill.trim())
+        .filter(skill => skill !== "");
 
-            skillsHTML +=
-                `<li>${skill.trim()}</li>`;
-        }
+    skills.forEach(skill => {
+
+        const li = document.createElement("li");
+
+        li.textContent = skill;
+
+        previewSkills.appendChild(li);
 
     });
 
 
-    // ===============================
-    // PROJECT LIST
-    // ===============================
+    // Projects
 
-    let projectsList = projects.split(",");
+    previewProjects.innerHTML = "";
 
-    let projectsHTML = "";
+    const projects = projectsInput.value
+        .split(",")
+        .map(project => project.trim())
+        .filter(project => project !== "");
 
-    projectsList.forEach(function(project) {
+    projects.forEach(project => {
 
-        if (project.trim() !== "") {
+        const li = document.createElement("li");
 
-            projectsHTML +=
-                `<li>${project.trim()}</li>`;
-        }
+        li.textContent = project;
 
-    });
-
-
-    // ===============================
-    // LANGUAGE LIST
-    // ===============================
-
-    let languageList = languages.split(",");
-
-    let languageHTML = "";
-
-    languageList.forEach(function(language) {
-
-        if (language.trim() !== "") {
-
-            languageHTML +=
-                `<li>${language.trim()}</li>`;
-        }
+        previewProjects.appendChild(li);
 
     });
 
 
-    // ===============================
-    // PHOTO
-    // ===============================
+    // GitHub
 
-    let photoHTML = "";
+    if (githubInput.value.trim() !== "") {
 
-    if (photo) {
+        previewGithub.href = githubInput.value;
 
-        let photoURL =
-            URL.createObjectURL(photo);
+        previewGithub.style.display = "inline";
 
-        photoHTML = `
-            <img
-                src="${photoURL}"
-                width="120"
-                height="120"
-                style="
-                    border-radius:50%;
-                    object-fit:cover;
-                    display:block;
-                    margin-bottom:15px;
-                "
-            >
-        `;
+    } else {
+
+        previewGithub.style.display = "none";
+
     }
 
 
-    // ===============================
-    // RESUME HTML
-    // ===============================
+    // LinkedIn
 
-    resume.innerHTML = `
+    if (linkedinInput.value.trim() !== "") {
 
-        <h2>My Resume</h2>
+        previewLinkedin.href = linkedinInput.value;
 
-        <hr>
+        previewLinkedin.style.display = "inline";
 
-        ${photoHTML}
+    } else {
 
+        previewLinkedin.style.display = "none";
 
-        <h3>👤 Personal Information</h3>
-
-        <p>
-            <strong>Name:</strong>
-            ${name}
-        </p>
-
-        <p>
-            <strong>Email:</strong>
-            ${email}
-        </p>
-
-        <p>
-            <strong>Phone:</strong>
-            ${phone}
-        </p>
+    }
 
 
-        <h3>🎓 Education</h3>
+    // Template
 
-        <p>
-            ${education}
-        </p>
+    resume.classList.remove(
+        "modern",
+        "professional",
+        "creative",
+        "minimal"
+    );
 
+    if (templateInput.value !== "classic") {
 
-        <h3>💻 Skills</h3>
+        resume.classList.add(templateInput.value);
 
-        <ul>
-            ${skillsHTML}
-        </ul>
+    }
 
-
-        <h3>💼 Experience</h3>
-
-        <p>
-            ${experience}
-        </p>
-
-
-        <h3>📂 Projects</h3>
-
-        <ul>
-            ${projectsHTML}
-        </ul>
-
-
-        <h3>🗣️ Languages</h3>
-
-        <ul>
-            ${languageHTML}
-        </ul>
-
-
-        <h3>🐙 GitHub</h3>
-
-        <p>
-            <a
-                href="${github}"
-                target="_blank"
-            >
-                ${github}
-            </a>
-        </p>
-
-
-        <h3>💼 LinkedIn</h3>
-
-        <p>
-            <a
-                href="${linkedin}"
-                target="_blank"
-            >
-                ${linkedin}
-            </a>
-        </p>
-
-
-        <h3>📝 Professional Summary</h3>
-
-        <p>
-            ${summary}
-        </p>
-
-
-        <h3>🎯 Career Objective</h3>
-
-        <p>
-            To obtain a challenging position where I can
-            apply my skills, learn continuously, and
-            contribute to the organization's success.
-        </p>
-
-
-        <p>
-            📅 <strong>Date:</strong>
-            ${today}
-        </p>
-
-    `;
 }
 
 
-// ===============================
-// AI SUMMARY GENERATOR
-// ===============================
+// ==============================
+// LIVE INPUT EVENTS
+// ==============================
+
+const allInputs = document.querySelectorAll(
+    "input, textarea, select"
+);
+
+allInputs.forEach(input => {
+
+    input.addEventListener(
+        "input",
+        updatePreview
+    );
+
+    input.addEventListener(
+        "change",
+        updatePreview
+    );
+
+});
+
+
+// ==============================
+// PHOTO PREVIEW
+// ==============================
+
+photoInput.addEventListener("change", function () {
+
+    const file = photoInput.files[0];
+
+    if (!file) {
+
+        previewPhoto.style.display = "none";
+
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function (event) {
+
+        previewPhoto.src = event.target.result;
+
+        previewPhoto.style.display = "block";
+
+    };
+
+    reader.readAsDataURL(file);
+
+});
+
+
+// ==============================
+// AI SUMMARY
+// ==============================
 
 function generateAI() {
 
-    let skills =
-        document.getElementById("skills").value.trim();
-
-    let experience =
-        document.getElementById("experience").value.trim();
-
-
-    if (skills === "") {
-
-        alert("Please enter your skills first! ❌");
-        return;
-    }
-
-
-    let aiSummary = "";
-
-
-    // FRESHER
+    const name = nameInput.value.trim();
+    const job = jobTitleInput.value.trim();
+    const skills = skillsInput.value.trim();
+    const experience = experienceInput.value.trim();
 
     if (
-        experience.toLowerCase() === "fresher"
+        name === "" ||
+        job === "" ||
+        skills === ""
     ) {
 
-        aiSummary =
-            "Motivated and enthusiastic fresher " +
-            "with knowledge of " +
-            skills +
-            ". Quick learner with strong " +
-            "problem-solving abilities and a willingness " +
-            "to learn new technologies. Seeking an " +
-            "opportunity to apply my skills and contribute " +
-            "to a professional organization.";
-
-    }
-
-
-    // EXPERIENCED
-
-    else {
-
-        aiSummary =
-            "Experienced professional with expertise in " +
-            skills +
-            ". Demonstrated ability to solve problems, " +
-            "work effectively in a team, and deliver " +
-            "quality results. Seeking opportunities to " +
-            "apply my experience and contribute to " +
-            "organizational growth.";
-
-    }
-
-
-    document.getElementById("summary").value =
-        aiSummary;
-
-}
-
-
-// ===============================
-// SAVE RESUME
-// ===============================
-
-function saveResume() {
-
-    let resumeData = {
-
-        name:
-            document.getElementById("name").value,
-
-        email:
-            document.getElementById("email").value,
-
-        phone:
-            document.getElementById("phone").value,
-
-        education:
-            document.getElementById("education").value,
-
-        skills:
-            document.getElementById("skills").value,
-
-        experience:
-            document.getElementById("experience").value,
-
-        summary:
-            document.getElementById("summary").value,
-
-        projects:
-            document.getElementById("projects").value,
-
-        languages:
-            document.getElementById("languages").value,
-
-        github:
-            document.getElementById("github").value,
-
-        linkedin:
-            document.getElementById("linkedin").value,
-
-        template:
-            document.getElementById("template").value
-    };
-
-
-    localStorage.setItem(
-        "savedResume",
-        JSON.stringify(resumeData)
-    );
-
-
-    alert("Resume saved successfully! ✅");
-}
-
-
-// ===============================
-// LOAD SAVED RESUME
-// ===============================
-
-function loadSavedResume() {
-
-    let savedData =
-        localStorage.getItem("savedResume");
-
-
-    if (!savedData) {
-
-        alert("No saved resume found! ❌");
-        return;
-    }
-
-
-    let resumeData =
-        JSON.parse(savedData);
-
-
-    document.getElementById("name").value =
-        resumeData.name || "";
-
-    document.getElementById("email").value =
-        resumeData.email || "";
-
-    document.getElementById("phone").value =
-        resumeData.phone || "";
-
-    document.getElementById("education").value =
-        resumeData.education || "";
-
-    document.getElementById("skills").value =
-        resumeData.skills || "";
-
-    document.getElementById("experience").value =
-        resumeData.experience || "";
-
-    document.getElementById("summary").value =
-        resumeData.summary || "";
-
-    document.getElementById("projects").value =
-        resumeData.projects || "";
-
-    document.getElementById("languages").value =
-        resumeData.languages || "";
-
-    document.getElementById("github").value =
-        resumeData.github || "";
-
-    document.getElementById("linkedin").value =
-        resumeData.linkedin || "";
-
-    document.getElementById("template").value =
-        resumeData.template || "classic";
-
-
-    alert("Saved resume loaded! ✅");
-
-
-    // Automatically display the resume
-
-    generateResume();
-}
-
-
-// ===============================
-// DELETE SAVED RESUME
-// ===============================
-
-function deleteSavedResume() {
-
-    let savedData =
-        localStorage.getItem("savedResume");
-
-
-    if (!savedData) {
-
-        alert("No saved resume found! ❌");
-        return;
-    }
-
-
-    let confirmDelete =
-        confirm(
-            "Are you sure you want to delete your saved resume?"
+        alert(
+            "Please fill Name, Job Title and Skills first."
         );
 
-
-    if (confirmDelete) {
-
-        localStorage.removeItem("savedResume");
-
-        alert("Saved resume deleted! 🗑️");
+        return;
     }
+
+
+    let summary = "";
+
+
+    if (
+        experience.toLowerCase().includes("fresher")
+    ) {
+
+        summary =
+            `Motivated fresher seeking an opportunity as a ${job}. ` +
+            `Strong interest in developing professional skills and applying knowledge of ${skills}. ` +
+            `Eager to learn, grow and contribute to the organization.`;
+
+    } else {
+
+        summary =
+            `Experienced ${job} with strong knowledge of ${skills}. ` +
+            `Demonstrated ability to learn quickly, solve problems and contribute effectively to professional projects.`;
+
+    }
+
+
+    summaryInput.value = summary;
+
+    updatePreview();
+
 }
 
 
-// ===============================
+// ==============================
+// GENERATE RESUME
+// ==============================
+
+function generateResume() {
+
+    if (
+        nameInput.value.trim() === "" ||
+        emailInput.value.trim() === "" ||
+        phoneInput.value.trim() === "" ||
+        educationInput.value.trim() === "" ||
+        skillsInput.value.trim() === "" ||
+        experienceInput.value.trim() === "" ||
+        projectsInput.value.trim() === "" ||
+        languagesInput.value.trim() === ""
+    ) {
+
+        alert("Please fill all required fields!");
+
+        return;
+    }
+
+
+    updatePreview();
+
+    alert("Resume generated successfully!");
+
+
+    resume.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+// ==============================
+// DARK MODE
+// ==============================
+
+function darkMode() {
+
+    document.body.classList.toggle("dark");
+
+}
+
+
+// ==============================
 // CLEAR FORM
-// ===============================
+// ==============================
 
 function clearForm() {
 
-    document.getElementById("name").value = "";
+    nameInput.value = "";
+    jobTitleInput.value = "";
+    emailInput.value = "";
+    phoneInput.value = "";
 
-    document.getElementById("email").value = "";
+    photoInput.value = "";
 
-    document.getElementById("phone").value = "";
+    templateInput.value = "classic";
 
-    document.getElementById("education").value = "";
+    educationInput.value = "";
+    skillsInput.value = "";
+    experienceInput.value = "";
 
-    document.getElementById("skills").value = "";
+    summaryInput.value = "";
 
-    document.getElementById("experience").value = "";
+    projectsInput.value = "";
+    languagesInput.value = "";
 
-    document.getElementById("summary").value = "";
+    githubInput.value = "";
+    linkedinInput.value = "";
 
-    document.getElementById("projects").value = "";
+    previewPhoto.style.display = "none";
 
-    document.getElementById("languages").value = "";
+    updatePreview();
 
-    document.getElementById("github").value = "";
-
-    document.getElementById("linkedin").value = "";
-
-    document.getElementById("photo").value = "";
-
-    document.getElementById("template").value =
-        "classic";
-
-    document.getElementById("resume").innerHTML = "";
-
-    document.getElementById("resume").className = "";
-
-
-    alert("Form cleared! 🧹");
 }
 
 
-// ===============================
-// DOWNLOAD / PRINT PDF
-// ===============================
+// ==============================
+// DOWNLOAD PDF
+// ==============================
 
 function downloadPDF() {
+
+    updatePreview();
 
     window.print();
 
 }
 
 
-// ===============================
-// DARK MODE
-// ===============================
+// ==============================
+// INITIAL PREVIEW
+// ==============================
 
-function darkMode() {
-
-    let resume =
-        document.getElementById("resume");
-
-
-    resume.classList.toggle("dark");
-
-}
+updatePreview();
