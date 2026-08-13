@@ -4,7 +4,7 @@
 
 
 // ==========================================
-// GET LIVE DATE
+// LIVE DATE
 // ==========================================
 
 function getLiveDate() {
@@ -17,7 +17,7 @@ function getLiveDate() {
 
 
 // ==========================================
-// GET FORM VALUES
+// GET FORM DATA
 // ==========================================
 
 function getFormData() {
@@ -26,6 +26,10 @@ function getFormData() {
         name: document.getElementById("name")?.value.trim() || "",
         email: document.getElementById("email")?.value.trim() || "",
         phone: document.getElementById("phone")?.value.trim() || "",
+
+        // JOB TITLE
+        jobTitle: document.getElementById("jobTitle")?.value.trim() || "",
+
         education: document.getElementById("education")?.value.trim() || "",
         skills: document.getElementById("skills")?.value.trim() || "",
         experience: document.getElementById("experience")?.value.trim() || "",
@@ -34,13 +38,15 @@ function getFormData() {
         languages: document.getElementById("languages")?.value.trim() || "",
         github: document.getElementById("github")?.value.trim() || "",
         linkedin: document.getElementById("linkedin")?.value.trim() || "",
-        template: document.getElementById("template")?.value || "classic"
+
+        template:
+            document.getElementById("template")?.value || "classic"
     };
 }
 
 
 // ==========================================
-// MAKE SKILLS HTML
+// SKILLS HTML
 // ==========================================
 
 function makeSkillsHTML(skills) {
@@ -59,7 +65,7 @@ function makeSkillsHTML(skills) {
 
 
 // ==========================================
-// MAKE PROJECTS HTML
+// PROJECTS HTML
 // ==========================================
 
 function makeProjectsHTML(projects) {
@@ -78,7 +84,7 @@ function makeProjectsHTML(projects) {
 
 
 // ==========================================
-// MAKE PROFILE HTML
+// PROFILE LINKS
 // ==========================================
 
 function makeProfilesHTML(github, linkedin) {
@@ -86,6 +92,7 @@ function makeProfilesHTML(github, linkedin) {
     let html = "";
 
     if (github) {
+
         html += `
             <p>
                 <strong>GitHub:</strong>
@@ -97,6 +104,7 @@ function makeProfilesHTML(github, linkedin) {
     }
 
     if (linkedin) {
+
         html += `
             <p>
                 <strong>LinkedIn:</strong>
@@ -116,12 +124,13 @@ function makeProfilesHTML(github, linkedin) {
 
 
 // ==========================================
-// GET PHOTO
+// PHOTO
 // ==========================================
 
 function getPhotoHTML() {
 
-    const photoInput = document.getElementById("photo");
+    const photoInput =
+        document.getElementById("photo");
 
     if (
         photoInput &&
@@ -172,7 +181,7 @@ function getTemplateClass(template) {
 
 
 // ==========================================
-// GENERATE AI SUMMARY
+// AI SUMMARY
 // ==========================================
 
 function generateAI() {
@@ -196,9 +205,7 @@ function generateAI() {
         return;
     }
 
-
     let summary = "";
-
 
     if (
         data.experience.toLowerCase() === "fresher"
@@ -218,10 +225,8 @@ function generateAI() {
             "commitment to delivering quality work.";
     }
 
-
     summaryBox.value = summary;
 
-    // Update Live Preview immediately
     updateLivePreview();
 }
 
@@ -237,14 +242,13 @@ function updateLivePreview() {
 
     if (!resume) return;
 
-
     const data = getFormData();
 
-    const date = getLiveDate();
+    const date =
+        getLiveDate();
 
     const templateClass =
         getTemplateClass(data.template);
-
 
     const skillsHTML =
         makeSkillsHTML(data.skills);
@@ -261,9 +265,6 @@ function updateLivePreview() {
     const photoHTML =
         getPhotoHTML();
 
-
-    // IMPORTANT:
-    // Preview is generated even when form is empty.
 
     resume.innerHTML = `
 
@@ -286,6 +287,12 @@ function updateLivePreview() {
                     <h1>
                         ${data.name || "Your Name"}
                     </h1>
+
+
+                    <h3>
+                        ${data.jobTitle || "Job Title"}
+                    </h3>
+
 
                     <p>
                         ${data.email || "your@email.com"}
@@ -315,7 +322,7 @@ function updateLivePreview() {
             </section>
 
 
-            <!-- PROFESSIONAL SUMMARY -->
+            <!-- SUMMARY -->
 
             <section>
 
@@ -452,12 +459,13 @@ function updateLivePreview() {
 
 
 // ==========================================
-// GENERATE FINAL RESUME
+// GENERATE RESUME
 // ==========================================
 
 function generateResume() {
 
-    const data = getFormData();
+    const data =
+        getFormData();
 
 
     if (
@@ -471,7 +479,9 @@ function generateResume() {
         !data.languages
     ) {
 
-        alert("Please fill all fields!");
+        alert(
+            "Please fill all fields!"
+        );
 
         return;
     }
@@ -532,10 +542,18 @@ function darkMode() {
 
 function clearForm() {
 
+    // IMPORTANT:
+    // jobTitle भी इसमें included है.
+
     const ids = [
+
         "name",
         "email",
         "phone",
+
+        // JOB TITLE
+        "jobTitle",
+
         "education",
         "skills",
         "experience",
@@ -544,46 +562,58 @@ function clearForm() {
         "languages",
         "github",
         "linkedin"
+
     ];
 
 
-    ids.forEach(id => {
+    ids.forEach(function(id) {
 
         const element =
             document.getElementById(id);
 
         if (element) {
+
             element.value = "";
         }
 
     });
 
 
+    // Reset template
+
     const template =
         document.getElementById("template");
 
     if (template) {
-        template.value = "classic";
+
+        template.value =
+            "classic";
     }
 
+
+    // Clear photo
 
     const photo =
         document.getElementById("photo");
 
     if (photo) {
+
         photo.value = "";
     }
 
 
-    // Empty form ke baad bhi
-    // Live Preview + Date dikhegi.
+    // Refresh preview
+    // Date remains visible
 
     updateLivePreview();
 
 
     window.scrollTo({
+
         top: 0,
+
         behavior: "smooth"
+
     });
 }
 
@@ -621,15 +651,20 @@ function downloadPDF() {
 
 document.addEventListener(
     "DOMContentLoaded",
-    function () {
+    function() {
 
         updateLivePreview();
 
 
         const inputIds = [
+
             "name",
             "email",
             "phone",
+
+            // JOB TITLE
+            "jobTitle",
+
             "education",
             "skills",
             "experience",
@@ -639,10 +674,11 @@ document.addEventListener(
             "github",
             "linkedin",
             "template"
+
         ];
 
 
-        inputIds.forEach(id => {
+        inputIds.forEach(function(id) {
 
             const element =
                 document.getElementById(id);
@@ -664,7 +700,7 @@ document.addEventListener(
         });
 
 
-        // Photo change
+        // Photo live preview
 
         const photo =
             document.getElementById("photo");
