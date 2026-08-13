@@ -91,22 +91,14 @@ function makeSkillsHTML(skills) {
 
     if (!skills) {
 
-        return `
-            <li>
-                Your skills will appear here.
-            </li>
-        `;
+        return "<li>Your skills will appear here.</li>";
     }
-
 
     return skills
         .split(",")
         .map(skill => skill.trim())
         .filter(skill => skill !== "")
-        .map(
-            skill =>
-                `<li>${skill}</li>`
-        )
+        .map(skill => `<li>${skill}</li>`)
         .join("");
 }
 
@@ -119,22 +111,14 @@ function makeProjectsHTML(projects) {
 
     if (!projects) {
 
-        return `
-            <li>
-                Your projects will appear here.
-            </li>
-        `;
+        return "<li>Your projects will appear here.</li>";
     }
-
 
     return projects
         .split(",")
         .map(project => project.trim())
         .filter(project => project !== "")
-        .map(
-            project =>
-                `<li>${project}</li>`
-        )
+        .map(project => `<li>${project}</li>`)
         .join("");
 }
 
@@ -143,52 +127,39 @@ function makeProjectsHTML(projects) {
 // PROFILE LINKS
 // ==========================================
 
-function makeProfilesHTML(
-    github,
-    linkedin
-) {
+function makeProfilesHTML(github, linkedin) {
 
     let html = "";
-
 
     if (github) {
 
         html += `
             <p>
                 <strong>GitHub:</strong>
-                <a
-                    href="${github}"
-                    target="_blank"
-                >
+                <a href="${github}" target="_blank">
                     ${github}
                 </a>
             </p>
         `;
     }
 
-
     if (linkedin) {
 
         html += `
             <p>
                 <strong>LinkedIn:</strong>
-                <a
-                    href="${linkedin}"
-                    target="_blank"
-                >
+                <a href="${linkedin}" target="_blank">
                     ${linkedin}
                 </a>
             </p>
         `;
     }
 
-
     if (!html) {
 
         html =
             "<p>Your profile links will appear here.</p>";
     }
-
 
     return html;
 }
@@ -203,7 +174,6 @@ function getPhotoHTML() {
     const photoInput =
         document.getElementById("photo");
 
-
     if (
         photoInput &&
         photoInput.files &&
@@ -215,7 +185,6 @@ function getPhotoHTML() {
                 photoInput.files[0]
             );
 
-
         return `
             <img
                 src="${imageURL}"
@@ -225,40 +194,31 @@ function getPhotoHTML() {
         `;
     }
 
-
     return "";
 }
 
 
 // ==========================================
-// TEMPLATE CLASS
+// TEMPLATE
 // ==========================================
 
 function getTemplateClass(template) {
 
     if (template === "modern") {
-
         return "modern-template";
     }
 
-
     if (template === "professional") {
-
         return "professional-template";
     }
 
-
     if (template === "creative") {
-
         return "creative-template";
     }
 
-
     if (template === "minimal") {
-
         return "minimal-template";
     }
-
 
     return "classic-template";
 }
@@ -270,13 +230,10 @@ function getTemplateClass(template) {
 
 function generateAI() {
 
-    const data =
-        getFormData();
-
+    const data = getFormData();
 
     const summaryBox =
         document.getElementById("summary");
-
 
     if (
         !data.name ||
@@ -292,13 +249,10 @@ function generateAI() {
         return;
     }
 
-
     let summary = "";
 
-
     if (
-        data.experience
-            .toLowerCase() === "fresher"
+        data.experience.toLowerCase() === "fresher"
     ) {
 
         summary =
@@ -315,10 +269,7 @@ function generateAI() {
             "commitment to delivering quality work.";
     }
 
-
-    summaryBox.value =
-        summary;
-
+    summaryBox.value = summary;
 
     updateLivePreview();
 }
@@ -333,35 +284,22 @@ function updateLivePreview() {
     const resume =
         document.getElementById("resume");
 
-
     if (!resume) return;
-
 
     const data =
         getFormData();
 
-
     const date =
         getLiveDate();
 
-
     const templateClass =
-        getTemplateClass(
-            data.template
-        );
-
+        getTemplateClass(data.template);
 
     const skillsHTML =
-        makeSkillsHTML(
-            data.skills
-        );
-
+        makeSkillsHTML(data.skills);
 
     const projectsHTML =
-        makeProjectsHTML(
-            data.projects
-        );
-
+        makeProjectsHTML(data.projects);
 
     const profilesHTML =
         makeProfilesHTML(
@@ -369,57 +307,34 @@ function updateLivePreview() {
             data.linkedin
         );
 
-
     const photoHTML =
         getPhotoHTML();
 
 
     resume.innerHTML = `
 
-        <div
-            class="resume-card ${templateClass}"
-        >
+        <div class="resume-card ${templateClass}">
 
             <div class="resume-header">
 
-
                 <div class="photo-area">
-
                     ${photoHTML}
-
                 </div>
-
 
                 <div class="resume-name">
 
                     <h1>
-                        ${
-                            data.name ||
-                            "Your Name"
-                        }
+                        ${data.name || "Your Name"}
                     </h1>
 
-
                     <h3>
-                        ${
-                            data.jobTitle ||
-                            "Job Title"
-                        }
+                        ${data.jobTitle || "Job Title"}
                     </h3>
 
-
                     <p>
-                        ${
-                            data.email ||
-                            "your@email.com"
-                        }
-
+                        ${data.email || "your@email.com"}
                         |
-
-                        ${
-                            data.phone ||
-                            "Phone Number"
-                        }
+                        ${data.phone || "Phone Number"}
                     </p>
 
                 </div>
@@ -434,11 +349,9 @@ function updateLivePreview() {
                 </h2>
 
                 <p>
-                    To obtain a challenging position
-                    where I can apply my skills,
-                    learn continuously, and
-                    contribute to the organization's
-                    success.
+                    To obtain a challenging position where I can
+                    apply my skills, learn continuously, and
+                    contribute to the organization's success.
                 </p>
 
             </section>
@@ -557,7 +470,6 @@ function updateLivePreview() {
 
             </section>
 
-
         </div>
     `;
 }
@@ -571,7 +483,6 @@ function generateResume() {
 
     const data =
         getFormData();
-
 
     if (
         !data.name ||
@@ -591,9 +502,7 @@ function generateResume() {
         return;
     }
 
-
     updateLivePreview();
-
 
     document
         .getElementById("resume")
@@ -614,15 +523,12 @@ function darkMode() {
         "dark-mode"
     );
 
-
     const button =
         document.querySelector(
             'button[onclick="darkMode()"]'
         );
 
-
     if (!button) return;
-
 
     if (
         document.body.classList.contains(
@@ -664,41 +570,30 @@ function clearForm() {
 
     ];
 
+    ids.forEach(function(id) {
 
-    ids.forEach(
-        function(id) {
+        const element =
+            document.getElementById(id);
 
-            const element =
-                document.getElementById(id);
+        if (element) {
 
-
-            if (element) {
-
-                element.value = "";
-            }
-
+            element.value = "";
         }
-    );
+
+    });
 
 
     const template =
-        document.getElementById(
-            "template"
-        );
-
+        document.getElementById("template");
 
     if (template) {
 
-        template.value =
-            "classic";
+        template.value = "classic";
     }
 
 
     const photo =
-        document.getElementById(
-            "photo"
-        );
-
+        document.getElementById("photo");
 
     if (photo) {
 
@@ -707,7 +602,6 @@ function clearForm() {
 
 
     updateLivePreview();
-
 
     window.scrollTo({
 
@@ -726,10 +620,7 @@ function clearForm() {
 function downloadPDF() {
 
     const resume =
-        document.getElementById(
-            "resume"
-        );
-
+        document.getElementById("resume");
 
     if (
         !resume ||
@@ -743,20 +634,24 @@ function downloadPDF() {
         return;
     }
 
-
     window.print();
 }
 
 
 // ==========================================
-// PREMIUM
+// PREMIUM PLAN
 // ==========================================
 
-function goPremium() {
+function selectPlan(plan, price) {
 
     alert(
-        "💎 ResumeAi Premium is coming soon!\n\n" +
-        "Payment system will be added after the Premium design is finalized."
+        "💎 " +
+        plan +
+        " Premium selected!\n\n" +
+        "Price: ₹" +
+        price +
+        "\n\n" +
+        "Payment system will be connected next."
     );
 }
 
@@ -768,7 +663,6 @@ function goPremium() {
 document.addEventListener(
     "DOMContentLoaded",
     function() {
-
 
         updateLivePreview();
 
@@ -792,35 +686,30 @@ document.addEventListener(
         ];
 
 
-        inputIds.forEach(
-            function(id) {
+        inputIds.forEach(function(id) {
 
-                const element =
-                    document.getElementById(id);
+            const element =
+                document.getElementById(id);
 
-
-                if (!element) return;
+            if (!element) return;
 
 
-                element.addEventListener(
-                    "input",
-                    updateLivePreview
-                );
+            element.addEventListener(
+                "input",
+                updateLivePreview
+            );
 
 
-                element.addEventListener(
-                    "change",
-                    updateLivePreview
-                );
+            element.addEventListener(
+                "change",
+                updateLivePreview
+            );
 
-            }
-        );
+        });
 
 
         const photo =
-            document.getElementById(
-                "photo"
-            );
+            document.getElementById("photo");
 
 
         if (photo) {
