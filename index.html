@@ -1,236 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>ResumeAi</title>
-    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
 <div class="container">
 
+
+    <!-- MAIN HEADING -->
+
     <h1>ResumeAi</h1>
-    <p class="subtitle">AI Resume Builder</p>
 
-    <div class="form-section">
 
-        <h2>Personal Details</h2>
+    <!-- BASIC DETAILS -->
 
-        <input type="text" id="name" placeholder="Full Name">
+    <input
+        type="text"
+        id="name"
+        placeholder="Full Name"
+    >
 
-        <input type="text" id="jobTitle"
-               placeholder="Job Title (Example: Web Developer)">
+    <br><br>
 
-        <input type="email" id="email" placeholder="Email">
 
-        <input type="text" id="phone" placeholder="Phone Number">
+    <input
+        type="email"
+        id="email"
+        placeholder="Email"
+    >
 
-        <input type="file" id="photo" accept="image/*">
+    <br><br>
 
-        <h2>Select Resume Template</h2>
 
-        <select id="template">
-            <option value="classic">Classic</option>
-            <option value="modern">Modern</option>
-            <option value="professional">Professional</option>
-            <option value="creative">Creative</option>
-            <option value="minimal">Minimal</option>
-        </select>
+    <input
+        type="text"
+        id="phone"
+        placeholder="Phone Number"
+    >
 
-        <h2>Education</h2>
+    <br><br>
 
-        <input type="text" id="education"
-               placeholder="Education">
 
-        <h2>Skills</h2>
+    <input
+        type="text"
+        id="jobTitle"
+        placeholder="Job Title"
+    >
 
-        <textarea id="skills"
-                  placeholder="Skills (Example: HTML, CSS, JavaScript)"></textarea>
+    <br><br>
 
-        <h2>Experience</h2>
 
-        <textarea id="experience"
-                  placeholder="Experience (Example: Fresher)"></textarea>
+    <!-- PHOTO -->
 
-        <button onclick="generateAI()">
-            🤖 Generate AI Summary
-        </button>
+    <input
+        type="file"
+        id="photo"
+        accept="image/*"
+    >
 
-        <textarea id="summary"
-                  placeholder="AI Professional Summary"></textarea>
+    <br><br>
 
-        <h2>Projects</h2>
 
-        <textarea id="projects"
-                  placeholder="Projects (Example: AI Resume Builder, Weather App)"></textarea>
+    <!-- TEMPLATE -->
 
-        <h2>Languages</h2>
+    <label>
+        <b>Select Resume Template</b>
+    </label>
 
-        <input type="text" id="languages"
-               placeholder="Languages (Example: Hindi, English)">
+    <br><br>
 
-        <h2>Profile Links</h2>
 
-        <input type="url" id="github"
-               placeholder="GitHub Profile Link">
+    <select id="template">
 
-        <input type="url" id="linkedin"
-               placeholder="LinkedIn Profile Link">
+        <option value="classic">
+            Classic
+        </option>
 
-        <div class="buttons">
+        <option value="modern">
+            Modern
+        </option>
 
-            <button onclick="generateResume()">
-                Generate Resume
-            </button>
+        <option value="professional">
+            Professional
+        </option>
 
-            <button onclick="darkMode()">
-                🌙 Dark Mode
-            </button>
+        <option value="creative">
+            Creative
+        </option>
 
-            <button onclick="clearForm()">
-                Clear Form
-            </button>
+        <option value="minimal">
+            Minimal
+        </option>
 
-            <button onclick="downloadPDF()">
-                Download Resume (PDF)
-            </button>
+    </select>
+
+    <br><br>
+
+
+    <!-- EDUCATION -->
+
+    <input
+        type="text"
+        id="education"
+        placeholder="Education"
+    >
+
+    <br><br>
+
+
+    <!-- SKILLS -->
+
+    <textarea
+        id="skills"
+        placeholder="Skills (Example: HTML, CSS, JavaScript)"
+    ></textarea>
+
+    <br><br>
+
+
+    <!-- EXPERIENCE -->
+
+    <textarea
+        id="experience"
+        placeholder="Experience (Example: Fresher)"
+    ></textarea>
+
+    <br><br>
+
+
+    <!-- AI SUMMARY -->
+
+    <button onclick="generateAI()">
+        🤖 Generate AI Summary
+    </button>
+
+    <br><br>
+
+
+    <textarea
+        id="summary"
+        placeholder="AI Professional Summary"
+    ></textarea>
+
+    <br><br>
+
+
+    <!-- PROJECTS -->
+
+    <textarea
+        id="projects"
+        placeholder="Projects (Example: AI Resume Builder, Weather App)"
+    ></textarea>
+
+    <br><br>
+
+
+    <!-- LANGUAGES -->
+
+    <input
+        type="text"
+        id="languages"
+        placeholder="Languages (Example: Hindi, English)"
+    >
+
+    <br><br>
+
+
+    <!-- GITHUB -->
+
+    <input
+        type="url"
+        id="github"
+        placeholder="GitHub Profile Link"
+    >
+
+    <br><br>
+
+
+    <!-- LINKEDIN -->
+
+    <input
+        type="url"
+        id="linkedin"
+        placeholder="LinkedIn Profile Link"
+    >
+
+    <br><br>
+
+
+    <!-- GENERATE -->
+
+    <button onclick="generateResume()">
+        Generate Resume
+    </button>
+
+
+    <!-- PREMIUM -->
+
+    <div class="premium-box">
+
+        <h2>
+            💎 ResumeAi Premium
+        </h2>
+
+        <p>
+            Unlock premium templates and features.
+        </p>
+
+
+        <div class="premium-features">
+
+            <p>
+                🔒 Modern Template
+            </p>
+
+            <p>
+                🔒 Professional Template
+            </p>
+
+            <p>
+                🔒 Creative Template
+            </p>
+
+            <p>
+                🔒 Minimal Template
+            </p>
+
+            <p>
+                🔒 Premium Resume Designs
+            </p>
 
         </div>
 
+
+        <button onclick="goPremium()">
+            💎 Go Premium
+        </button>
+
     </div>
+
+
+    <!-- OTHER BUTTONS -->
+
+    <button onclick="darkMode()">
+        🌙 Dark Mode
+    </button>
+
+
+    <button onclick="clearForm()">
+        Clear Form
+    </button>
+
+
+    <button onclick="downloadPDF()">
+        Download Resume (PDF)
+    </button>
 
 
     <!-- LIVE PREVIEW -->
 
-    <div class="preview-heading">
-        <h2>Live Preview</h2>
-        <span>Updates automatically</span>
-    </div>
+    <div id="resume"></div>
 
-    <div id="resume">
-
-        <div class="resume-header">
-
-            <div>
-                <h1 id="previewName">Your Name</h1>
-                <h3 id="previewJobTitle">Job Title</h3>
-            </div>
-
-            <img id="previewPhoto"
-                 class="preview-photo"
-                 alt="Profile Photo">
-
-        </div>
-
-        <div class="resume-contact">
-            <span id="previewEmail">Email</span>
-            <span id="previewPhone">Phone</span>
-        </div>
-
-        <hr>
-
-
-        <section>
-            <h2>Career Objective</h2>
-
-            <p>
-                To obtain a challenging position where I can apply my
-                skills, learn continuously, and contribute to the
-                organization's success.
-            </p>
-        </section>
-
-
-        <section>
-            <h2>Professional Summary</h2>
-
-            <p id="previewSummary">
-                Your professional summary will appear here.
-            </p>
-        </section>
-
-
-        <section>
-            <h2>Education</h2>
-
-            <p id="previewEducation">
-                Your education will appear here.
-            </p>
-        </section>
-
-
-        <section>
-            <h2>Skills</h2>
-
-            <ul id="previewSkills"></ul>
-        </section>
-
-
-        <section>
-            <h2>Experience</h2>
-
-            <p id="previewExperience">
-                Your experience will appear here.
-            </p>
-        </section>
-
-
-        <section>
-            <h2>Projects</h2>
-
-            <ul id="previewProjects"></ul>
-        </section>
-
-
-        <section>
-            <h2>Languages</h2>
-
-            <p id="previewLanguages">
-                Your languages will appear here.
-            </p>
-        </section>
-
-
-        <section id="linksSection">
-
-            <h2>Profiles</h2>
-
-            <p>
-                <a id="previewGithub"
-                   href="#"
-                   target="_blank">
-                    GitHub
-                </a>
-            </p>
-
-            <p>
-                <a id="previewLinkedin"
-                   href="#"
-                   target="_blank">
-                    LinkedIn
-                </a>
-            </p>
-
-        </section>
-
-
-        <!-- DATE -->
-
-        <section>
-            <h2>Date</h2>
-
-            <p id="previewDate">
-                Date will appear here.
-            </p>
-        </section>
-
-    </div>
 
 </div>
+
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
