@@ -1,5 +1,5 @@
 // ==============================
-// ELEMENTS
+// INPUT ELEMENTS
 // ==============================
 
 const nameInput = document.getElementById("name");
@@ -23,34 +23,56 @@ const linkedinInput = document.getElementById("linkedin");
 
 
 // ==============================
-// LIVE PREVIEW ELEMENTS
+// PREVIEW ELEMENTS
 // ==============================
 
 const resume = document.getElementById("resume");
 
-const previewName = document.getElementById("previewName");
-const previewJobTitle = document.getElementById("previewJobTitle");
+const previewName =
+    document.getElementById("previewName");
 
-const previewEmail = document.getElementById("previewEmail");
-const previewPhone = document.getElementById("previewPhone");
+const previewJobTitle =
+    document.getElementById("previewJobTitle");
 
-const previewPhoto = document.getElementById("previewPhoto");
+const previewEmail =
+    document.getElementById("previewEmail");
 
-const previewSummary = document.getElementById("previewSummary");
-const previewEducation = document.getElementById("previewEducation");
-const previewExperience = document.getElementById("previewLanguages");
+const previewPhone =
+    document.getElementById("previewPhone");
 
-const previewSkills = document.getElementById("previewSkills");
-const previewProjects = document.getElementById("previewProjects");
+const previewPhoto =
+    document.getElementById("previewPhoto");
 
-const previewLanguages = document.getElementById("previewLanguages");
+const previewSummary =
+    document.getElementById("previewSummary");
 
-const previewGithub = document.getElementById("previewGithub");
-const previewLinkedin = document.getElementById("previewLinkedin");
+const previewEducation =
+    document.getElementById("previewEducation");
+
+const previewSkills =
+    document.getElementById("previewSkills");
+
+const previewExperience =
+    document.getElementById("previewExperience");
+
+const previewProjects =
+    document.getElementById("previewProjects");
+
+const previewLanguages =
+    document.getElementById("previewLanguages");
+
+const previewGithub =
+    document.getElementById("previewGithub");
+
+const previewLinkedin =
+    document.getElementById("previewLinkedin");
+
+const previewDate =
+    document.getElementById("previewDate");
 
 
 // ==============================
-// UPDATE LIVE PREVIEW
+// LIVE PREVIEW
 // ==============================
 
 function updatePreview() {
@@ -84,7 +106,9 @@ function updatePreview() {
         "Your languages will appear here.";
 
 
-    // Skills
+    // ==========================
+    // SKILLS
+    // ==========================
 
     previewSkills.innerHTML = "";
 
@@ -104,7 +128,9 @@ function updatePreview() {
     });
 
 
-    // Projects
+    // ==========================
+    // PROJECTS
+    // ==========================
 
     previewProjects.innerHTML = "";
 
@@ -124,37 +150,58 @@ function updatePreview() {
     });
 
 
-    // GitHub
+    // ==========================
+    // GITHUB
+    // ==========================
 
     if (githubInput.value.trim() !== "") {
 
-        previewGithub.href = githubInput.value;
+        previewGithub.href =
+            githubInput.value.trim();
 
-        previewGithub.style.display = "inline";
+        previewGithub.style.display =
+            "inline";
 
     } else {
 
-        previewGithub.style.display = "none";
-
+        previewGithub.style.display =
+            "none";
     }
 
 
-    // LinkedIn
+    // ==========================
+    // LINKEDIN
+    // ==========================
 
     if (linkedinInput.value.trim() !== "") {
 
-        previewLinkedin.href = linkedinInput.value;
+        previewLinkedin.href =
+            linkedinInput.value.trim();
 
-        previewLinkedin.style.display = "inline";
+        previewLinkedin.style.display =
+            "inline";
 
     } else {
 
-        previewLinkedin.style.display = "none";
-
+        previewLinkedin.style.display =
+            "none";
     }
 
 
-    // Template
+    // ==========================
+    // DATE
+    // ==========================
+
+    const today =
+        new Date().toLocaleDateString();
+
+    previewDate.textContent =
+        today;
+
+
+    // ==========================
+    // TEMPLATE
+    // ==========================
 
     resume.classList.remove(
         "modern",
@@ -165,20 +212,22 @@ function updatePreview() {
 
     if (templateInput.value !== "classic") {
 
-        resume.classList.add(templateInput.value);
+        resume.classList.add(
+            templateInput.value
+        );
 
     }
-
 }
 
 
 // ==============================
-// LIVE INPUT EVENTS
+// LIVE INPUT LISTENERS
 // ==============================
 
-const allInputs = document.querySelectorAll(
-    "input, textarea, select"
-);
+const allInputs =
+    document.querySelectorAll(
+        "input, textarea, select"
+    );
 
 allInputs.forEach(input => {
 
@@ -199,30 +248,37 @@ allInputs.forEach(input => {
 // PHOTO PREVIEW
 // ==============================
 
-photoInput.addEventListener("change", function () {
+photoInput.addEventListener(
+    "change",
+    function () {
 
-    const file = photoInput.files[0];
+        const file =
+            photoInput.files[0];
 
-    if (!file) {
+        if (!file) {
 
-        previewPhoto.style.display = "none";
+            previewPhoto.style.display =
+                "none";
 
-        return;
+            return;
+        }
+
+        const reader =
+            new FileReader();
+
+        reader.onload =
+            function (event) {
+
+                previewPhoto.src =
+                    event.target.result;
+
+                previewPhoto.style.display =
+                    "block";
+            };
+
+        reader.readAsDataURL(file);
     }
-
-    const reader = new FileReader();
-
-    reader.onload = function (event) {
-
-        previewPhoto.src = event.target.result;
-
-        previewPhoto.style.display = "block";
-
-    };
-
-    reader.readAsDataURL(file);
-
-});
+);
 
 
 // ==============================
@@ -231,10 +287,18 @@ photoInput.addEventListener("change", function () {
 
 function generateAI() {
 
-    const name = nameInput.value.trim();
-    const job = jobTitleInput.value.trim();
-    const skills = skillsInput.value.trim();
-    const experience = experienceInput.value.trim();
+    const name =
+        nameInput.value.trim();
+
+    const job =
+        jobTitleInput.value.trim();
+
+    const skills =
+        skillsInput.value.trim();
+
+    const experience =
+        experienceInput.value.trim();
+
 
     if (
         name === "" ||
@@ -254,7 +318,9 @@ function generateAI() {
 
 
     if (
-        experience.toLowerCase().includes("fresher")
+        experience
+            .toLowerCase()
+            .includes("fresher")
     ) {
 
         summary =
@@ -271,10 +337,10 @@ function generateAI() {
     }
 
 
-    summaryInput.value = summary;
+    summaryInput.value =
+        summary;
 
     updatePreview();
-
 }
 
 
@@ -295,7 +361,9 @@ function generateResume() {
         languagesInput.value.trim() === ""
     ) {
 
-        alert("Please fill all required fields!");
+        alert(
+            "Please fill all required fields!"
+        );
 
         return;
     }
@@ -303,13 +371,15 @@ function generateResume() {
 
     updatePreview();
 
-    alert("Resume generated successfully!");
+
+    alert(
+        "Resume generated successfully!"
+    );
 
 
     resume.scrollIntoView({
         behavior: "smooth"
     });
-
 }
 
 
@@ -319,8 +389,9 @@ function generateResume() {
 
 function darkMode() {
 
-    document.body.classList.toggle("dark");
-
+    document.body.classList.toggle(
+        "dark"
+    );
 }
 
 
@@ -331,30 +402,38 @@ function darkMode() {
 function clearForm() {
 
     nameInput.value = "";
+
     jobTitleInput.value = "";
+
     emailInput.value = "";
+
     phoneInput.value = "";
 
     photoInput.value = "";
 
-    templateInput.value = "classic";
+    templateInput.value =
+        "classic";
 
     educationInput.value = "";
+
     skillsInput.value = "";
+
     experienceInput.value = "";
 
     summaryInput.value = "";
 
     projectsInput.value = "";
+
     languagesInput.value = "";
 
     githubInput.value = "";
+
     linkedinInput.value = "";
 
-    previewPhoto.style.display = "none";
+    previewPhoto.style.display =
+        "none";
 
     updatePreview();
-
 }
 
 
@@ -367,7 +446,6 @@ function downloadPDF() {
     updatePreview();
 
     window.print();
-
 }
 
 
