@@ -160,9 +160,7 @@ button:hover {
 }
 
 
-/* =========================
-   MODERN TEMPLATE
-========================= */
+/* MODERN */
 
 #resume.modern {
     background: #eef7ff;
@@ -178,9 +176,7 @@ button:hover {
 }
 
 
-/* =========================
-   PROFESSIONAL TEMPLATE
-========================= */
+/* PROFESSIONAL */
 
 #resume.professional {
     background: #f5f5f5;
@@ -192,9 +188,7 @@ button:hover {
 }
 
 
-/* =========================
-   CREATIVE TEMPLATE
-========================= */
+/* CREATIVE */
 
 #resume.creative {
     background: linear-gradient(
@@ -215,9 +209,7 @@ button:hover {
 }
 
 
-/* =========================
-   MINIMAL TEMPLATE
-========================= */
+/* MINIMAL */
 
 #resume.minimal {
     background: white;
@@ -239,9 +231,7 @@ button:hover {
 }
 
 
-/* =========================
-   DARK MODE
-========================= */
+/* DARK MODE */
 
 body.dark {
     background: #111;
@@ -271,9 +261,7 @@ body.dark #resume section h2 {
 }
 
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media (max-width: 600px) {
 
@@ -302,13 +290,10 @@ body.dark #resume section h2 {
         width: 100%;
         margin: 5px 0;
     }
-
 }
 
 
-/* =========================
-   PRINT
-========================= */
+/* PRINT */
 
 @media print {
 
