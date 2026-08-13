@@ -1,152 +1,331 @@
-body{
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
     font-family: Arial, sans-serif;
-    background:#f2f2f2;
+    background: #f2f4f7;
+    color: #222;
+    transition: 0.3s;
 }
 
-.container{
-    width:500px;
-    margin:40px auto;
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    text-align:center;
-    box-shadow:0 0 10px gray;
+.container {
+    width: 700px;
+    max-width: 100%;
+    margin: 20px auto;
 }
 
-input,textarea{
-    width:90%;
-    padding:10px;
-    margin:5px;
+h1 {
+    text-align: center;
+    margin-bottom: 5px;
 }
 
-button{
-    background:#007bff;
-    color:white;
-    padding:10px 20px;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
-    margin: 8px;
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
 }
 
-button:hover{
-    background:#0056b3;
+.form-section {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
 }
 
-#resume{
-    margin-top:20px;
-    text-align:left;
-    border-top:2px solid #ddd;
-    padding-top:20px;
-
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.2);
+.form-section h2 {
+    font-size: 18px;
+    margin-top: 22px;
 }
 
-h2{
-    color:#007bff;
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 7px 0;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
 }
-@media print {
-    button {
-        display: none;
-    }
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+button {
+    border: none;
+    padding: 12px 18px;
+    margin: 6px 3px;
+    border-radius: 7px;
+    background: #087df5;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+.buttons {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.preview-heading {
+    margin-top: 30px;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 10px 10px 0 0;
+}
+
+.preview-heading h2 {
+    margin: 0;
+}
+
+.preview-heading span {
+    color: #777;
+    font-size: 13px;
+}
+
+#resume {
+    background: white;
+    padding: 35px;
+    margin-bottom: 40px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+    min-height: 500px;
+}
+
+.resume-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.resume-header h1 {
+    text-align: left;
+    margin: 0;
+    font-size: 30px;
+}
+
+.resume-header h3 {
+    margin: 6px 0;
+    color: #087df5;
+}
+
+.preview-photo {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: none;
+}
+
+.resume-contact {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    color: #555;
+}
+
+#resume hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+#resume section {
+    margin-bottom: 20px;
+}
+
+#resume section h2 {
+    color: #087df5;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+#resume ul {
+    padding-left: 20px;
+}
+
+#resume a {
+    color: #087df5;
+}
+
+
+/* =========================
+   MODERN TEMPLATE
+========================= */
+
+#resume.modern {
+    background: #eef7ff;
+    border-left: 7px solid #087df5;
+}
+
+#resume.modern .resume-header h1 {
+    color: #075cae;
+}
+
+#resume.modern section h2 {
+    color: #075cae;
+}
+
+
+/* =========================
+   PROFESSIONAL TEMPLATE
+========================= */
+
+#resume.professional {
+    background: #f5f5f5;
+    border-top: 8px solid #333;
+}
+
+#resume.professional section h2 {
+    color: #333;
+}
+
+
+/* =========================
+   CREATIVE TEMPLATE
+========================= */
+
+#resume.creative {
+    background: linear-gradient(
+        135deg,
+        #fff0f7,
+        #eef7ff
+    );
+
+    border: 3px solid #9b59b6;
+}
+
+#resume.creative .resume-header h1 {
+    color: #9b59b6;
+}
+
+#resume.creative section h2 {
+    color: #9b59b6;
+}
+
+
+/* =========================
+   MINIMAL TEMPLATE
+========================= */
+
+#resume.minimal {
+    background: white;
+    border: none;
+    box-shadow: none;
+}
+
+#resume.minimal section h2 {
+    color: #222;
+    border-bottom: 1px solid #222;
+}
+
+#resume.minimal .resume-header h1 {
+    color: #111;
+}
+
+#resume.minimal .resume-header h3 {
+    color: #555;
+}
+
+
+/* =========================
+   DARK MODE
+========================= */
+
+body.dark {
+    background: #111;
+    color: white;
+}
+
+body.dark .form-section,
+body.dark .preview-heading {
+    background: #1e1e1e;
+}
+
+body.dark #resume {
+    background: #222;
+    color: white;
+}
+
+body.dark input,
+body.dark textarea,
+body.dark select {
+    background: #333;
+    color: white;
+    border-color: #555;
+}
+
+body.dark #resume section h2 {
+    color: #5da9ff;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
 
     body {
-        background: white;
+        padding: 10px;
+    }
+
+    .form-section {
+        padding: 15px;
     }
 
     #resume {
-        box-shadow: none;
-        border: none;
+        padding: 20px;
     }
-}
-#resume h2{
-    text-align:center;
-    color:#007bff;
-    margin-bottom:10px;
+
+    .resume-header h1 {
+        font-size: 24px;
+    }
+
+    .preview-photo {
+        width: 75px;
+        height: 75px;
+    }
+
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
 }
 
-#resume img{
-    display:block;
-    margin:15px auto;
-    border:3px solid #007bff;
-}
 
-#resume p{
-    font-size:18px;
-    margin:8px 0;
-}
-.classic{
-    background:#ffffff;
-    color:#000;
-    border:2px solid black;
-}
+/* =========================
+   PRINT
+========================= */
 
-.classic{
-    background:#ffffff;
-    color:#000;
-    border:2px solid black;
-}
+@media print {
 
-.modern{
-    background:#e3f2fd;
-    color:black;
-    border:3px solid #2196f3;
-    border-radius:15px;
-    box-shadow:0 0 15px rgba(0,0,0,0.3);
-}
+    body {
+        background: white;
+        padding: 0;
+    }
 
-.modern h2{
-    color:#1565c0;
-    text-align:center;
-}
+    .form-section,
+    .preview-heading {
+        display: none;
+    }
 
-.modern p,
-.modern li,
-.modern strong,
-.modern a{
-    color:black;
-}
-
-.modern img{
-    border:4px solid #2196f3;
-}
-.dark {
-    background:#121212 !important;
-    color:white !important;
-}
-
-.dark h2,
-.dark strong {
-    color:#00e5ff;
-}
-
-.dark a {
-    color:#00e5ff;
-}
-
-.dark p,
-.dark li {
-    color:white;
-}
-/* Dark Mode */
-
-#resume.dark {
-    background: #1e1e1e;
-    color: white;
-    border: 2px solid #555;
-}
-
-#resume.dark h2 {
-    color: #00bfff;
-}
-
-#resume.dark a {
-    color: #00bfff;
-}
-
-#resume.dark hr {
-    border-color: #555;
+    #resume {
+        display: block;
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+    }
 }
